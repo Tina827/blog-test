@@ -108,7 +108,7 @@ export default {
   },
   methods: {
     login(formName) {
-      this.$refs.ruleForm1.validate(valid => {
+      this.$refs[formName].validate(valid => {
         if (valid) {
           axios
             .post("/proxyApi/user/login", {
@@ -137,11 +137,11 @@ export default {
         }
       });
     },
-    register() {
-      this.$refs.ruleForm2.validate(valid => {
+    register(formName) {
+      this.$refs[formName].validate(valid => {
         if (valid) {
          axios
-            .post("/proxyApi/user/register", {
+            .post("/proxyApi/user/reg", {
               username: this.ruleForm2.username,
               password: this.ruleForm2.pass
             })
