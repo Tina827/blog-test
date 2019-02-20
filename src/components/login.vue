@@ -121,15 +121,16 @@ export default {
                   message: "登录成功",
                   type: "success"
                 });
-                this.$router.push({name: home})
+                this.$router.push({ name: home });
               } else {
                 this.$message({
                   message: "登录失败",
                   type: "warning"
                 });
               }
-            }).catch(error => {
-              console.log(error)
+            })
+            .catch(error => {
+              console.log(error);
             });
         } else {
           console.log("error submit!!");
@@ -140,11 +141,28 @@ export default {
     register(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-         axios
+          axios
             .post("/proxyApi/user/reg", {
               username: this.ruleForm2.username,
               password: this.ruleForm2.pass
             })
+            .then(res => {
+              if (res.code === 1) {
+                this.$message({
+                  message: "注册成功",
+                  type: "success"
+                });
+                this.$router.push({ name: home });
+              } else {
+                this.$message({
+                  message: "注册失败",
+                  type: "warning"
+                });
+              }
+            })
+            .catch(error => {
+              console.log(error);
+            });
         } else {
           console.log("error submit!!");
           return false;
