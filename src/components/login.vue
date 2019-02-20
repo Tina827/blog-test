@@ -116,12 +116,13 @@ export default {
               password: this.ruleForm1.pass
             })
             .then(res => {
-              if (res.code === 1) {
+              if (res.data.code === 1) {
+                console.log(111);
                 this.$message({
                   message: "登录成功",
                   type: "success"
                 });
-                this.$router.push({ name: home });
+                this.$router.push({ name: "home" });
               } else {
                 this.$message({
                   message: "登录失败",
@@ -147,7 +148,7 @@ export default {
               password: this.ruleForm2.pass
             })
             .then(res => {
-              if (res.code === 1) {
+              if (res.data.code === 1) {
                 this.$message({
                   message: "注册成功",
                   type: "success"
